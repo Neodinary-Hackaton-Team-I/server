@@ -1,4 +1,10 @@
 spring:
+  mvc:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: "*"
+      allowed-headers: "*"
+      allow-credentials: false
   application:
     name: umcmc
   datasource:
