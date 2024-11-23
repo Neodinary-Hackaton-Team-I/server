@@ -14,15 +14,15 @@ public class Follow extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "followId")
+    @Column(name = "follow_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "followerId")
+    @JoinColumn(name = "follower_id")
     private User follower;  // 팔로우를 하는 사용자
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "followingId")
+    @JoinColumn(name = "following_id")
     private User following;  // 팔로우 당하는 사용자
 
     // 연관관계 편의 메서드
