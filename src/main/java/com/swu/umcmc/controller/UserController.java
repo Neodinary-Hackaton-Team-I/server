@@ -1,19 +1,19 @@
 package com.swu.umcmc.controller;
 
 import com.swu.umcmc.apiPayload.ApiResponse;
+import com.swu.umcmc.dto.follow.FollowResponseDto;
 import com.swu.umcmc.dto.user.UserRequestDto;
 import com.swu.umcmc.dto.user.UserResponseDto;
 import com.swu.umcmc.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -42,4 +42,18 @@ public class UserController {
         UserResponseDto.LoginResponse response = userService.login(request);
         return ApiResponse.success("로그인 성공", response);
     }
+
+
+
+    @Operation(summary = "사용자 검색", description = "사용자 검색을 수행합니다. 첫 검색 시 cuser 값에 9999-11-24T23:59:59 를 넣어주세요")
+    @GetMapping(value = "/{userId}")
+    public ApiResponse<?> findUsers(
+            @PathVariable("userId") Long userId,
+            @RequestParam(required = false) String name,
+            @RequestParam(value = "cursor", defaultValue = "+999999999-12-31T23:59:59.999999999") LocalDateTime cursor,
+            @RequestParam(value = "offset", defaultValue = "10") int offset){
+        UserResponseDto.UserSliceDTO users = userService.getUsers(name, userId, cursor, offset);
+        return ApiResponse.success("검색 성공", users);
+    }
+
 }

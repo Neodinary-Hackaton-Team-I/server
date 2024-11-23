@@ -28,7 +28,6 @@ public class FollowResponseDto {
                     .userId(follower.getId())
                     .build();
         }
-
     }
     @Getter
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
