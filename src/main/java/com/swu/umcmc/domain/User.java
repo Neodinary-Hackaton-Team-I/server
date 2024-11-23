@@ -2,16 +2,16 @@ package com.swu.umcmc.domain;
 
 import com.swu.umcmc.domain.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table(name = "user")
 public class User extends BaseEntity{
 
@@ -21,10 +21,7 @@ public class User extends BaseEntity{
     private Long id;
 
     @Column(length = 225, nullable = false)
-    private String password1;
-
-    @Column(length = 20, nullable = false)
-    private String password2;
+    private String password;
 
     @Column(length = 20, nullable = false)
     private String nickname;
