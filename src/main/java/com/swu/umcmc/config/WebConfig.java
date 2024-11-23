@@ -9,10 +9,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")      // 모든 경로에 대해
-                .allowedOrigins("*")     // 모든 origin 허용
-                .allowedMethods("*")     // 모든 HTTP 메서드 허용
-                .allowedHeaders("*")     // 모든 헤더 허용
-                .maxAge(3600);           // preflight 캐시 시간
+        registry.addMapping("/**")
+                .allowedOriginPatterns("*")  // allowedOrigins 대신 사용
+                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .exposedHeaders("*")
+                .allowCredentials(false)     // true로 하면 allowedOrigins("*")와 충돌
+                .maxAge(3600);
     }
 }
