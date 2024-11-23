@@ -19,4 +19,5 @@ public class LetterResponse {
     private String body;
     private LocalDateTime createdAt;
     private boolean isOpened;
+    private String nickname;
 }

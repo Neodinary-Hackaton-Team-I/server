@@ -94,6 +94,8 @@ public class LetterService {
     }
 
     private LetterResponse mapToLetterResponse(Letter letter){
+        String senderNickname = letter.getSender().getNickname();
+
         return LetterResponse.builder()
                 .letterId(letter.getId())
                 .senderId(letter.getSender().getId())
@@ -102,6 +104,7 @@ public class LetterService {
                 .body(letter.getBody())
                 .createdAt(letter.getCreatedAt())
                 .isOpened(letter.isOpened())
+                .nickname(senderNickname)
                 .build();
     }
 }
