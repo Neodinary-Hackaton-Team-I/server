@@ -1,6 +1,5 @@
 package com.swu.umcmc.dto.follow;
 
-import com.swu.umcmc.domain.Follow;
 import com.swu.umcmc.domain.User;
 import lombok.*;
 import org.springframework.data.domain.Slice;
@@ -8,7 +7,7 @@ import org.springframework.data.domain.Slice;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FollowResponse {
+public class FollowResponseDto {
 
     @Getter
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
