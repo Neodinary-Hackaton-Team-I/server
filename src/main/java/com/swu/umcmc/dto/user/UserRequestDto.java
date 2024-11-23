@@ -30,4 +30,20 @@ public class UserRequestDto {
         @NotBlank(message = "비밀번호는 필수 입력값입니다")
         private String password;
     }
+
+    @Getter
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Schema(title = "USER_REQ_02 : 로그인 요청 DTO")
+    public static class LoginRequest {
+        @Schema(description = "이메일", example = "test@example.com")
+        @Email(message = "올바른 이메일 형식이 아닙니다")
+        @NotBlank(message = "이메일은 필수 입력값입니다")
+        private String email;
+
+        @Schema(description = "비밀번호", example = "password123!")
+        @NotBlank(message = "비밀번호는 필수 입력값입니다")
+        private String password;
+    }
 }
