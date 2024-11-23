@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface FollowRepository extends JpaRepository<Follow, Long> {
 
@@ -54,4 +55,6 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
                                            @Param("cursor") LocalDateTime cursor,
                                            Pageable pageable);
 
+    boolean existsByFollowerAndFollowing(User follower, User following);
+    Optional<Follow> findByFollowerAndFollowing(User follower, User following);
 }

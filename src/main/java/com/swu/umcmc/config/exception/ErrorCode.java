@@ -15,6 +15,12 @@ public enum ErrorCode {
     DUPLICATE_EMAIL(400,"U001", "중복된 이메일입니다."),
     DUPLICATE_NICKNAME(400, "U002", "중복된 닉네임입니다."),
 
+    // follow
+    SELF_FOLLOW_NOT_ALLOWED(400, "F001", "자기 자신을 팔로우할 수 없습니다."),
+    ALREADY_FOLLOWING(400, "F002", "이미 팔로우하고 있는 사용자입니다."),
+    NOT_FOLLOWING(400, "F003", "팔로우하고 있지 않은 사용자입니다."),
+
+
     USER_NOT_FOUND(400, "U003", "존재하지 않는 사용자입니다."),
     INVALID_PASSWORD(400, "U004", "비밀번호가 일치하지 않습니다.");
 
