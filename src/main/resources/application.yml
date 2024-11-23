@@ -2,10 +2,10 @@ spring:
   application:
     name: umcmc
   datasource:
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
+    url: jdbc:mysql://umcmc-database.cfw6kq6qgqaj.ap-northeast-2.rds.amazonaws.com:3306/umcmc_database?serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    username: admin
+    password: admin123!
   jpa:
     hibernate:
       ddl-auto: none
