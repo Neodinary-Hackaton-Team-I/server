@@ -11,5 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class FollowQueryServiceImpl implements FollowQueryService {
     public final FollowRepository followRepository;
 
+    public
 
 }
