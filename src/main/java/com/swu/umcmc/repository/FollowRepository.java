@@ -1,12 +1,12 @@
-    package com.swu.umcmc.repository;
+package com.swu.umcmc.repository;
 
-    import com.swu.umcmc.domain.Follow;
-    import com.swu.umcmc.domain.User;
-    import org.springframework.data.domain.Pageable;
-    import org.springframework.data.domain.Slice;
-    import org.springframework.data.jpa.repository.JpaRepository;
-    import org.springframework.data.jpa.repository.Query;
-    import org.springframework.data.repository.query.Param;
+import com.swu.umcmc.domain.Follow;
+import com.swu.umcmc.domain.User;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
     import java.time.LocalDateTime;
     import java.util.List;
