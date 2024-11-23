@@ -19,11 +19,11 @@ public class Follow extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follower_id")
-    private User follower;  // 팔로우를 하는 사용자
+    private User follower;  // 팔로우 당하는 사용자
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "following_id")
-    private User following;  // 팔로우 당하는 사용자
+    private User following;  // 팔로우를 하는 사용자
 
     // 연관관계 편의 메서드
     public void setFollowRelation(User follower, User following) {
