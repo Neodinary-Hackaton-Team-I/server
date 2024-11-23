@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FileService {
 
-    @Value("${S3_BUCKET_NAME}")
+    @Value("umcmc-s3-bucket")
     private String bucket;
 
     private final S3Presigner s3Presigner;
