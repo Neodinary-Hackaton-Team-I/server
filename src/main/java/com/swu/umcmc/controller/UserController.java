@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")  // 모든 origin 허용
 @Tag(name = "UserController", description = "사용자 관련 API")
 public class UserController {
 
