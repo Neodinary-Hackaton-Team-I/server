@@ -23,6 +23,9 @@ public class UserResponseDto {
         @Schema(description = "응답 메시지", example = "로그인이 완료되었습니다.")
         private String message;
 
+        @Schema(description = "사용자 ID", example = "1")
+        private Long userId;
+
         @Schema(description = "사용자 닉네임", example = "테스트유저")
         private String nickname;
     }

@@ -57,6 +57,7 @@ public class UserService {
 
         return UserResponseDto.LoginResponse.builder()
                 .message("로그인이 완료되었습니다.")
+                .userId(user.getId())
                 .nickname(user.getNickname())
                 .build();
     }
