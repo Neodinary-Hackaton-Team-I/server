@@ -19,8 +19,8 @@ public class SwaggerConfig {
 
     private Info apiInfo() {
         return new Info()
-                .title("PerFuinder API Docs")
-                .description("PerFuinder API 문서")
+                .title("Wish API Docs")
+                .description("Wish API 문서")
                 .version("1.0.0");
     }
 }
