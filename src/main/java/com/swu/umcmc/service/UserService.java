@@ -1,7 +1,10 @@
 package com.swu.umcmc.service;
 
+import com.swu.umcmc.config.exception.CustomException;
+import com.swu.umcmc.config.exception.ErrorCode;
 import com.swu.umcmc.domain.User;
 import com.swu.umcmc.dto.user.UserRequestDto;
+import com.swu.umcmc.dto.user.UserResponseDto;
 import com.swu.umcmc.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,11 +22,11 @@ public class UserService {
     // 이메일 및 닉네임 중복 검사
     private void validateSignUpInfo(String email, String nickname) {
         if (userRepository.existsByEmail(email)) {
-            throw new IllegalArgumentException("이미 사용 중인 이메일입니다.");
+            throw new CustomException(ErrorCode.DUPLICATE_EMAIL);
         }
 
         if (userRepository.existsByNickname(nickname)) {
-            throw new IllegalArgumentException("이미 사용 중인 닉네임입니다.");
+            throw new CustomException(ErrorCode.DUPLICATE_NICKNAME);
         }
     }
 
@@ -40,4 +43,22 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+    // 로그인
+    public UserResponseDto.LoginResponse login(UserRequestDto.LoginRequest request) {
+        // 이메일로 사용자 찾기
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+
+        // 비밀번호 확인
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new CustomException(ErrorCode.INVALID_PASSWORD);
+        }
+
+        return UserResponseDto.LoginResponse.builder()
+                .message("로그인이 완료되었습니다.")
+                .nickname(user.getNickname())
+                .build();
+    }
+
 }
