@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FileService {
 
-    @Value("${cloud.aws.s3.bucket}")
+    @Value("${S3_BUCKET_NAME}")
     private String bucket;
 
     private final S3Presigner s3Presigner;
