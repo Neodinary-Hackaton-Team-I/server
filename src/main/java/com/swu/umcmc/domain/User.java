@@ -29,14 +29,14 @@ public class User extends BaseEntity{
     @Column(length = 20, nullable = false)
     private String nickname;
 
+    @Column(length = 50, nullable = false, unique = true)  // unique 제약조건 추가
+    private String email;
+
     @OneToMany(mappedBy = "follower")
     private List<Follow> followers = new ArrayList<>();
 
     @OneToMany(mappedBy = "following")
     private List<Follow> followings = new ArrayList<>();
-
-    @OneToMany(mappedBy = "sender")
-    private List<Letter> sentLetters = new ArrayList<>();
 
     @OneToMany(mappedBy = "receiver")
     private List<Letter> receivedLetters = new ArrayList<>();

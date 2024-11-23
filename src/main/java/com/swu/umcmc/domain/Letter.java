@@ -22,9 +22,6 @@ public class Letter extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
-
     @Column(length = 300)
     private String imageUrl;
 
