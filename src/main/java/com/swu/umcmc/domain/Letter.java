@@ -34,12 +34,6 @@ public class Letter extends BaseEntity {
     private User receiver;
 
     // 연관관계 편의 메서드
-    public void setSender(User sender) {
-        this.sender = sender;
-        sender.getSentLetters().add(this);
-    }
-
-    // 연관관계 편의 메서드
     public void setReceiver(User receiver) {
         this.receiver = receiver;
         receiver.getReceivedLetters().add(this);
