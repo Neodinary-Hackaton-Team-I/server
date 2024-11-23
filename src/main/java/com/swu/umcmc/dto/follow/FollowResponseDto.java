@@ -4,6 +4,7 @@ import com.swu.umcmc.domain.User;
 import lombok.*;
 import org.springframework.data.domain.Slice;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class FollowResponseDto {
                     .isFollowed(false)
                     .build();
         }
+        public void setIsFollowed(boolean isFollowed) {
+            this.isFollowed = isFollowed;
+        }
     }
     @Getter
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -32,16 +36,17 @@ public class FollowResponseDto {
     @Builder
     public static class FollowSliceDTO{
         List<FollowDTO> follows;
-        Long cursor;
+        LocalDateTime cursor;
         boolean hasNext;
 
         public static FollowSliceDTO from(Slice<User> follows) {
             return FollowSliceDTO.builder()
                     .follows(follows.getContent().isEmpty()?new ArrayList<>():follows.getContent().stream().map(FollowDTO::from).toList())
-                    .cursor(follows.getContent().isEmpty()?0 : follows.getContent().get(follows.getContent().size()-1).getId())
+                    .cursor(follows.getContent().isEmpty()?null : follows.getContent().get(follows.getContent().size()-1).getCreatedAt())
                     .hasNext(follows.hasContent())
                     .build();
         }
+
 
     }
 
