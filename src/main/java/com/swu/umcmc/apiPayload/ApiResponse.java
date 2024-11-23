@@ -27,6 +27,15 @@ public class ApiResponse<T> {
                 .data(data)
                 .build();
     }
+
+    // 반환값 없는 성공 응답 생성 메서드들
+    public static ApiResponse<?> success(String message) {
+        return ApiResponse.builder()
+                .status(200)
+                .message(message)
+                .build();
+    }
+
     // 에러 응답 생성 메서드
     public static <T> ApiResponse<T> error(ErrorCode errorCode) {
         return ApiResponse.<T>builder()
