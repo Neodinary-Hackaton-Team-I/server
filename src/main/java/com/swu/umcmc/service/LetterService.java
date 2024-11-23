@@ -78,7 +78,7 @@ public class LetterService {
     public void openLetter() {
         LocalDate today = LocalDate.now();
         LocalDate start = LocalDate.of(today.getYear(), 11, 23);
-        LocalDate end = LocalDate.of(today.getYear(), 11, 31);
+        LocalDate end = LocalDate.of(today.getYear(), 11, 30);
 
         if (today.isAfter(start) && today.isBefore(end)) {
             List<Letter> letters = letterRepository.findAllByIsOpened(false);
