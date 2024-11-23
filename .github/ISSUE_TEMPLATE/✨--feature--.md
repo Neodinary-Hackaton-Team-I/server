@@ -1,7 +1,7 @@
 ---
 name: "✨ [Feature] "
 about: Feature 작업 이슈를 생성해주세요!
-title: ''
+title: "✨ [Feature] "
 labels: feature
 assignees: ''
 
