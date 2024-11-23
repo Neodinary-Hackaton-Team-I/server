@@ -48,7 +48,7 @@ public class FollowController {
         return ApiResponse.success("언팔로우 성공");
     }
 
-    @Operation(summary = "팔로잉 검색", description = "팔로잉 중에서 닉네임 검색")
+    @Operation(summary = "팔로잉 검색", description = "팔로잉 중에서 닉네임 검색.  첫 검색 시 cuser 값에 9999-11-24T23:59:59 를 넣어주세요")
     @GetMapping("/{userId}/search")
     public ApiResponse<?> findInFollow(
             @PathVariable("userId") Long userId,
@@ -59,7 +59,7 @@ public class FollowController {
         return ApiResponse.success("검색 성공", followSliceDTO);
     }
 
-    @Operation(summary = "전체 팔로잉", description = "전체 팔로잉 커서기반 페이지네이션")
+    @Operation(summary = "전체 팔로잉", description = "전체 팔로잉 커서기반 페이지네이션.  첫 검색 시 cuser 값에 9999-11-24T23:59:59 를 넣어주세요")
     @GetMapping("/{userId}/followings")
     public ApiResponse<?> getFollowingByMe(
             @PathVariable("userId") Long userId,
@@ -70,7 +70,7 @@ public class FollowController {
         return ApiResponse.success("검색 성공", followSliceDTO);
     }
 
-    @Operation(summary = "전체 팔로워", description = "전체 팔로워 커서기반 페이지네이션")
+    @Operation(summary = "전체 팔로워", description = "전체 팔로워 커서기반 페이지네이션.  첫 검색 시 cuser 값에 9999-11-24T23:59:59 를 넣어주세요")
     @GetMapping("/{userId}/followers")
     public ApiResponse<?> getFollowerByMe(
             @PathVariable("userId") Long userId,
