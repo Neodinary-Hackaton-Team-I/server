@@ -29,14 +29,8 @@ public class UserController {
     @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<UserResponseDto.SignUpResponse> signUp(
             @Valid @RequestBody(required = true) UserRequestDto.SignUpRequest request) {
-        userService.signUp(request);
-        // log.info("Received signup request: {}", request);  // 로그 추가
-        return ApiResponse.success(
-                "회원가입 성공",
-                UserResponseDto.SignUpResponse.builder()
-                        .message("회원가입이 완료되었습니다.")
-                        .build()
-        );
+        UserResponseDto.SignUpResponse response = userService.signUp(request);
+        return ApiResponse.success("회원가입 성공", response);
     }
 
     @Operation(summary = "로그인", description = "사용자 로그인을 수행합니다.")

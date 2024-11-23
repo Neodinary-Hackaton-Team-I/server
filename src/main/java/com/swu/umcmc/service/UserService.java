@@ -32,7 +32,7 @@ public class UserService {
 
     // 회원가입
     @Transactional
-    public void signUp(UserRequestDto.SignUpRequest request) {
+    public UserResponseDto.SignUpResponse signUp(UserRequestDto.SignUpRequest request) {
         validateSignUpInfo(request.getEmail(), request.getNickname());
 
         User user = User.builder()
@@ -41,7 +41,12 @@ public class UserService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
 
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);  // 저장된 유저 객체 받기
+
+        return UserResponseDto.SignUpResponse.builder()
+                .message("회원가입이 완료되었습니다.")
+                .userId(savedUser.getId())
+                .build();
     }
 
     // 로그인

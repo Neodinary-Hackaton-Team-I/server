@@ -14,6 +14,9 @@ public class UserResponseDto {
     public static class SignUpResponse {
         @Schema(description = "응답 메시지", example = "회원가입이 완료되었습니다.")
         private String message;
+
+        @Schema(description = "생성된 사용자 ID", example = "1")
+        private Long userId;
     }
 
     @Getter
