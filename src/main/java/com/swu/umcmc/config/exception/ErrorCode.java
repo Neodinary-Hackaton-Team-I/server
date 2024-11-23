@@ -22,8 +22,10 @@ public enum ErrorCode {
 
 
     USER_NOT_FOUND(400, "U003", "존재하지 않는 사용자입니다."),
-    INVALID_PASSWORD(400, "U004", "비밀번호가 일치하지 않습니다.");
+    INVALID_PASSWORD(400, "U004", "비밀번호가 일치하지 않습니다."),
 
+    // letter
+    INVALID_OPEN_TIME(400, "L001", "현재 날짜는 편지 열기 가능한 기간이 아닙니다.");
 
     private final int status;
     private final String code;
