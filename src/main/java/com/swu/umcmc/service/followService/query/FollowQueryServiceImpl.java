@@ -20,36 +20,28 @@ import java.util.List;
 public class FollowQueryServiceImpl implements FollowQueryService {
     public final FollowRepository followRepository;
 
-    public FollowResponseDto.FollowSliceDTO searchByNickNameInFollowing(String name, Long userId, LocalDateTime cursor, int offset) {
+    //내가 팔로우 하는 사람들 중에서 검색
+    @Override
+    public FollowResponseDto.FollowingSliceDTO searchByNickNameInFollowing(String name, Long userId, LocalDateTime cursor, int offset) {
         Pageable pageable = PageRequest.of(0, offset);
-        if (cursor == null){
-            FollowResponseDto.FollowSliceDTO followSliceDTO= FollowResponseDto.FollowSliceDTO
+        if (cursor == LocalDateTime.MAX) {
+            return FollowResponseDto.FollowingSliceDTO
                     .from(followRepository.findFollowersByFollowerNameAndFollowingIdDesc(name, userId, pageable));
 
-            for (int i =0;i<followSliceDTO.getFollows().size();i++){
-                if (followRepository.existsByFollowing_IdAndFollower_Id(followSliceDTO.getFollows().get(i).getUserId(), userId)){
-                    followSliceDTO.getFollows().get(i).setIsFollowed(true);
-                }
-            }
-            return followSliceDTO;
         }else {
-            FollowResponseDto.FollowSliceDTO followSliceDTO= FollowResponseDto.FollowSliceDTO
+            return FollowResponseDto.FollowingSliceDTO
                     .from(followRepository.findFollowersByFollowerNameAndFollowingIdDescWithCursor(name, userId, cursor, pageable));
-
-            for (int i =0;i<followSliceDTO.getFollows().size();i++){
-                if (followRepository.existsByFollowing_IdAndFollower_Id(followSliceDTO.getFollows().get(i).getUserId(), userId)){
-                    followSliceDTO.getFollows().get(i).setIsFollowed(true);
-                }
-            }
-            return followSliceDTO;
         }
 
     }
 
-    public FollowResponseDto.FollowSliceDTO getFollowers(Long userId, LocalDateTime cursor, int offset) {
+
+    //나를 팔로우하는 사람들
+    @Override
+    public FollowResponseDto.FollowerSliceDTO getFollowers(Long userId, LocalDateTime cursor, int offset) {
         Pageable pageable = PageRequest.of(0, offset);
-        if (cursor == null){
-            FollowResponseDto.FollowSliceDTO followSliceDTO= FollowResponseDto.FollowSliceDTO
+        if (cursor == LocalDateTime.MAX){
+            FollowResponseDto.FollowerSliceDTO followSliceDTO= FollowResponseDto.FollowerSliceDTO
                     .from(followRepository.findFollowersByFollowingIdDesc(userId, pageable));
 
             for (int i =0;i<followSliceDTO.getFollows().size();i++){
@@ -59,18 +51,30 @@ public class FollowQueryServiceImpl implements FollowQueryService {
             }
             return followSliceDTO;
         }else {
-            FollowResponseDto.FollowSliceDTO followSliceDTO= FollowResponseDto.FollowSliceDTO
+            FollowResponseDto.FollowerSliceDTO followerSliceDTO= FollowResponseDto.FollowerSliceDTO
                     .from(followRepository.findFollowersByFollowingIdDescWithCursor(userId, cursor, pageable));
 
-            for (int i =0;i<followSliceDTO.getFollows().size();i++){
-                if (followRepository.existsByFollowing_IdAndFollower_Id(followSliceDTO.getFollows().get(i).getUserId(), userId)){
-                    followSliceDTO.getFollows().get(i).setIsFollowed(true);
+            for (int i =0;i<followerSliceDTO.getFollows().size();i++){
+                if (followRepository.existsByFollowing_IdAndFollower_Id(followerSliceDTO.getFollows().get(i).getUserId(), userId)){
+                    followerSliceDTO.getFollows().get(i).setIsFollowed(true);
                 }
             }
-            return followSliceDTO;
+            return followerSliceDTO;
         }
     }
 
 
+    //내가 팔로우하는 사람들
+    @Override
+    public FollowResponseDto.FollowingSliceDTO getFollowings(Long userId, LocalDateTime cursor, int offset) {
+        Pageable pageable = PageRequest.of(0, offset);
+        if (cursor == LocalDateTime.MAX){
+            return FollowResponseDto.FollowingSliceDTO
+                    .from(followRepository.findFollowingsByFollowingIdDesc(userId, pageable));
+        }else {
+            return FollowResponseDto.FollowingSliceDTO
+                    .from(followRepository.findFollowingsByFollowingIdDescWithCursor(userId, cursor, pageable));
+        }
+    }
 
 }
