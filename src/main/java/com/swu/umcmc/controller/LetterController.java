@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/letters")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")  // 모든 origin 허용
 @Tag(name = "LetterController", description = "Letter 관련 기능 API")
 public class LetterController {
     private final LetterService letterService;

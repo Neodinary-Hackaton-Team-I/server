@@ -15,6 +15,7 @@ import com.swu.umcmc.service.followService.command.FollowCommandServiceImpl;
 @RestController
 @RequestMapping("/api/v1/follow")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")  // 모든 origin 허용
 @Tag(name = "FollowController", description = "Follow 관련 기능 API")
 public class FollowController {
 
