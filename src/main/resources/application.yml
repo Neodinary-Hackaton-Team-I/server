@@ -8,13 +8,13 @@ spring:
   application:
     name: umcmc
   datasource:
-    url: jdbc:mysql://umcmc-database.cfw6kq6qgqaj.ap-northeast-2.rds.amazonaws.com:3306/umcmc_database?serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?serverTimezone=Asia/Seoul&useLegacyDatetimeCode=false
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: admin
-    password: admin123!
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
